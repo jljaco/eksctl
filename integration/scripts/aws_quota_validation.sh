@@ -32,6 +32,13 @@ if [ ! -z "$q" ]; then
     invalid_quotas=$((invalid_quotas + 1))
 fi
 
+# max number of on-demand Trn instances L-2C3B7624
+q=$(validate_quota_value_above_threshold "ec2" "arn:aws:servicequotas:${region}:${account_id}:ec2/L-2C3B7624" 24 "max number of on-demand Trn instances")
+if [ ! -z "$q" ]; then
+    echo $q
+    invalid_quotas=$((invalid_quotas + 1))
+fi
+
 # max number of VPCs
 q=$(validate_quota_value_above_threshold "ec2" "arn:aws:servicequotas:${region}:${account_id}:ec2/L-0263D0A3" 100 "max number of VPCs")
 if [ ! -z "$q" ]; then
